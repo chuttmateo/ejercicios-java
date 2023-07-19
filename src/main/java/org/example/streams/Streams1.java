@@ -1,6 +1,7 @@
 package org.example.streams;
 
 import org.example.utils.Persona;
+import org.example.utils.Producto;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -70,7 +71,7 @@ public class Streams1 {
         List<Persona> personas = new ArrayList<>();
         personas.add(new Persona("mateo", 23, "María Grande"));
         personas.add(new Persona("tadeo", 22, "hasenkamp"));
-        personas.add(new Persona("juan", 20, "hasenkamp"));
+        personas.add(new Persona("juan", 25, "hasenkamp"));
 
         Map<String, Long> mapaPoblacion = personas.stream()
                 .collect(Collectors.groupingBy(Persona::getCiudad, Collectors.counting()));
@@ -91,8 +92,44 @@ public class Streams1 {
         List<Integer> numerosOrdenadosDescendentemente = numerosEnteros.stream().sorted((n1,n2) -> Integer.compare(n2,n1)).toList();
         //Puedo eliminar los tipos en la expresion lambda (Integer n1,Integer n2) a (n1,n2) = Type inference; al igual que las llaves y el return
         //numerosEnteros.sort((n1,n2)-> Integer.compare(n2,n1));
-        numerosOrdenadosDescendentemente.forEach(System.out::println);
-        //TODO: agregar limite
+        numerosOrdenadosDescendentemente.stream().limit(5).forEach(System.out::println);
+
+
+        /*Ejercicio de concatenación: Dado un arreglo de cadenas, utiliza Stream API para concatenar todas las cadenas en una sola cadena separadas por comas
+        y muestra el resultado en la consola.*/
+        List<String> cadenas2 = Arrays.asList("hola", "como", "estas");
+        //String resultante = String.join(", ", cadenas2);
+        String resultante = cadenas2.stream().collect(Collectors.joining(", "));
+        System.out.println(resultante);
+
+
+        /*Ejercicio de transformación y filtrado: Dado un arreglo de objetos de tipo Producto con atributos como nombre, precio y categoría,
+        utiliza Stream API para filtrar los productos con un precio mayor a 100 y transforma los resultados en una lista de nombres de productos.*/
+        List<Producto> productos = Arrays.asList(new Producto("jabón", 150.0, "limpieza"),new Producto("escoba", 180.0, "limpieza"), new Producto("pollo", 80.0, "alimentacion"));
+        List<String> filtrados = productos.stream()
+                .filter(producto -> producto.getPrecio() > 100)
+                .map(Producto::getNombre).toList();
+
+        filtrados.forEach(System.out::println);
+
+
+        /*Ejercicio de búsqueda y mapeo: Dado un arreglo de objetos de tipo Persona con atributos como nombre, edad y ciudad,
+        utiliza Stream API para buscar la persona de mayor edad y mapear su nombre en mayúsculas.*/
+
+        String personaBuscada = personas.stream().max(Comparator.comparingInt(Persona::getEdad))
+                .map(persona -> persona.getNombre().toUpperCase())
+                .orElse("No existe");
+        System.out.println(personaBuscada);
+
+
+        /*Ejercicio de conteo condicional: Dado un arreglo de números enteros,
+        utiliza Stream API para contar cuántos números son positivos, negativos y cero.*/
+        List<Integer> numeros2 = Arrays.asList(12,0,0,234,342,-23,-234,-234,534,342,5,-234,0);
+        long positivos = numeros2.stream().filter(num -> num > 0).count();
+        long negativos = numeros2.stream().filter(num -> num < 0).count();
+        long ceros = numeros2.stream().filter(num -> num == 0).count();
+
+        System.out.printf("Negativos: %d, Positivos: %d, Ceros: %d", negativos, positivos, ceros);
 
     }
 }

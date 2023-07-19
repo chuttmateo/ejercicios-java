@@ -34,4 +34,13 @@ public class Persona {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", ciudad='" + ciudad + '\'' +
+                '}';
+    }
 }
