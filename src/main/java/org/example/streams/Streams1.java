@@ -1,5 +1,6 @@
 package org.example.streams;
 
+import org.example.utils.Empleado;
 import org.example.utils.Persona;
 import org.example.utils.Producto;
 
@@ -109,13 +110,11 @@ public class Streams1 {
         List<String> filtrados = productos.stream()
                 .filter(producto -> producto.getPrecio() > 100)
                 .map(Producto::getNombre).toList();
-
         filtrados.forEach(System.out::println);
 
 
         /*Ejercicio de búsqueda y mapeo: Dado un arreglo de objetos de tipo Persona con atributos como nombre, edad y ciudad,
         utiliza Stream API para buscar la persona de mayor edad y mapear su nombre en mayúsculas.*/
-
         String personaBuscada = personas.stream().max(Comparator.comparingInt(Persona::getEdad))
                 .map(persona -> persona.getNombre().toUpperCase())
                 .orElse("No existe");
@@ -128,8 +127,57 @@ public class Streams1 {
         long positivos = numeros2.stream().filter(num -> num > 0).count();
         long negativos = numeros2.stream().filter(num -> num < 0).count();
         long ceros = numeros2.stream().filter(num -> num == 0).count();
-
         System.out.printf("Negativos: %d, Positivos: %d, Ceros: %d", negativos, positivos, ceros);
+
+
+
+        /*Ejercicio de eliminación de duplicados: Dado un arreglo de números enteros,
+        utiliza Stream API para eliminar los elementos duplicados y muestra el resultado en la consola.*/
+        List<Integer> sinDuplicados = numeros2.stream().distinct().toList();
+        sinDuplicados.forEach(System.out::println);
+
+
+
+        /*Ejercicio de cálculo estadístico: Dado un arreglo de números enteros, utiliza Stream API para calcular el valor promedio,
+         el valor máximo y el valor mínimo de los números.*/
+        Integer numMax = numeros2.stream()
+                .max(Comparator.comparingInt(Integer::intValue))
+                .orElse(null);
+        Integer numMin = numeros2.stream()
+                .min(Comparator.comparingInt(Integer::intValue))
+                .orElse(null);
+        Integer sumaTotal = numeros2.stream()
+                .reduce(0,Integer::sum);
+        System.out.printf("Número maximo de la lista: %d; Minimo: %d; Y el promedio es: %d %n", numMax, numMin, sumaTotal/numeros2.size());
+
+
+
+        /*Ejercicio de operaciones matemáticas: Crea una lista de números enteros y utiliza Stream API para realizar una serie de operaciones,
+        como sumar 5 a cada número, multiplicar por 2 y luego mostrar el resultado en la consola.*/
+        numeros2.stream()
+                .map(n -> n + 5)
+                .map(n -> n*2 ).forEach(System.out::println);
+
+
+
+        /*Ejercicio de transformación de texto: Dado un arreglo de cadenas, utiliza Stream API para eliminar los espacios en blanco al inicio
+        y al final de cada cadena, y luego convierte todas las cadenas a mayúsculas.*/
+        List<String> cadenasEspacios = Arrays.asList(" hola ", " como ", "estas");
+        cadenasEspacios.stream()
+                .map(String::trim)
+                .map(String::toUpperCase)
+                .forEach(System.out::print);
+        System.out.printf("%n");
+
+
+        /*Ejercicio de operaciones con objetos: Crea una lista de objetos de tipo Empleado con atributos como nombre, salario y departamento.
+        Utiliza Stream API para filtrar los empleados con un salario mayor a 50000 y calcular la suma total de sus salarios.*/
+        List<Empleado> empleados = Arrays.asList(new Empleado("alan", 99999.0, "desarrolo"), new Empleado("mateo", 99999.0, "desarrolo"), new Empleado("esteban", 30000.0, "diseño"));
+        Double totalSalarios = empleados.stream()
+                .filter(empleado -> empleado.getSalario() > 50000)
+                .map(Empleado::getSalario)
+                .reduce(0.0, Double::sum);
+        System.out.printf("Total en salarios: %.2f %n", totalSalarios);
 
     }
 }
