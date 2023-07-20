@@ -121,6 +121,7 @@ public class Streams1 {
         System.out.println(personaBuscada);
 
 
+
         /*Ejercicio de conteo condicional: Dado un arreglo de números enteros,
         utiliza Stream API para contar cuántos números son positivos, negativos y cero.*/
         List<Integer> numeros2 = Arrays.asList(12,0,0,234,342,-23,-234,-234,534,342,5,-234,0);
@@ -168,6 +169,7 @@ public class Streams1 {
                 .map(String::toUpperCase)
                 .forEach(System.out::print);
         System.out.printf("%n");
+
 
 
         /*Ejercicio de operaciones con objetos: Crea una lista de objetos de tipo Empleado con atributos como nombre, salario y departamento.
