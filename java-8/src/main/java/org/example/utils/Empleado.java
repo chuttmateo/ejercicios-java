@@ -34,4 +34,13 @@ public class Empleado {
         this.salario = salario;
         this.departamento = departamento;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "nombre='" + nombre + '\'' +
+                ", salario=" + salario +
+                ", departamento='" + departamento + '\'' +
+                '}';
+    }
 }

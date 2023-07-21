@@ -6,6 +6,7 @@ import org.example.utils.Producto;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Streams1 {
@@ -180,6 +181,57 @@ public class Streams1 {
                 .map(Empleado::getSalario)
                 .reduce(0.0, Double::sum);
         System.out.printf("Total en salarios: %.2f %n", totalSalarios);
+
+
+
+        /*Ejercicio de combinar y filtrar listas: Crea dos listas de cadenas y utiliza Stream API para combinarlas
+        en una sola lista y eliminar las cadenas duplicadas.*/
+        //cadenas2.addAll(cadenasEspacios); al ser una lista creada con Arrays.asList(), no admite el método add, porque es una lista de tamaño fijo
+        List<String> lista1 = new ArrayList<>();
+        List<String> lista2 = new ArrayList<>();
+        lista1.add("hola");
+        lista1.add("chau");
+        lista1.add("good bye");
+        lista2.add("hola");
+        lista2.add("chau");
+        lista1.addAll(lista2);
+
+        lista1.stream().distinct().forEach(System.out::println);
+
+
+
+        /*Ejercicio de búsqueda por subcadena: Dado un arreglo de cadenas, utiliza Stream API para buscar las cadenas
+        que contengan una subcadena específica (por ejemplo, "java") y mostrar el resultado en la consola.*/
+        System.out.println("Busqueda de sub cadena ---");
+
+        String subcadena = "asa";
+
+        List<String> asa = cadenas.stream()
+                .filter(cadena -> cadena
+                        .toLowerCase()
+                        .contains(subcadena.toLowerCase()))
+                .toList();
+
+        asa.forEach(System.out::println);
+
+
+
+        /*Ejercicio de agrupación y sumarización: Crea una lista de objetos de tipo Producto con atributos como nombre,
+        precio y categoría. Utiliza Stream API para agrupar los productos por categoría y calcular el precio total de cada categoría.*/
+        System.out.println("Ejercicio de agrupación y sumarizacióna ---");
+        Map<String, Double> precioPorCategoria = productos.stream()
+                .collect(Collectors.groupingBy(
+                        Producto::getCategoria,
+                        Collectors.summingDouble(Producto::getPrecio)));
+        precioPorCategoria.forEach((k, v)-> System.out.printf("Categoria: %s, Sumatoria: %.2f %n",k,v));
+
+
+
+        /*Ejercicio de conteo de elementos distintos: Dado un arreglo de números enteros,
+        utiliza Stream API para contar cuántos números distintos hay en la lista.*/
+        System.out.println("Ejercicio de conteo de elementos distintos ---");
+        System.out.println(numeros2.stream().distinct().toList().size());
+        
 
     }
 }
