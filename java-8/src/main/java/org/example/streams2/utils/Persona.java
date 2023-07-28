@@ -1,6 +1,6 @@
-package org.example.utils;
+package org.example.streams2.utils;
 
-public class Persona {
+public class Persona{
     private String nombre;
     private int edad;
     private String ciudad;

@@ -1,4 +1,4 @@
-package org.example.utils;
+package org.example.streams.utils;
 
 public class Producto {
     private String nombre;

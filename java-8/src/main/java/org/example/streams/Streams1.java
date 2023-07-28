@@ -1,12 +1,11 @@
 package org.example.streams;
 
-import org.example.utils.Empleado;
-import org.example.utils.Persona;
-import org.example.utils.Producto;
+import org.example.streams.utils.Empleado;
+import org.example.streams.utils.Persona;
+import org.example.streams.utils.Producto;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class Streams1 {
@@ -231,7 +230,6 @@ public class Streams1 {
         utiliza Stream API para contar cuántos números distintos hay en la lista.*/
         System.out.println("Ejercicio de conteo de elementos distintos ---");
         System.out.println(numeros2.stream().distinct().toList().size());
-        
 
     }
 }
