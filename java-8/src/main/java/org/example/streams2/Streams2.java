@@ -69,5 +69,19 @@ public class Streams2 {
                 .toList();
         fechasString.forEach(System.out::println);
 
+
+        /*Ejercicio de ordenamiento personalizado: Crea una lista de objetos de tipo Persona con atributos
+        como nombre y edad. Utiliza Stream API para ordenar la lista primero por edad ascendente y,
+        en caso de empate, por nombre en orden alfabético.*/
+        List<Persona> personas = new ArrayList<>();
+        personas.add(new Persona("mateo", 23, "María Grande"));
+        personas.add(new Persona("andres", 22, "hasenkamp"));
+        personas.add(new Persona("carlos", 22, "Rosario"));
+        personas.add(new Persona("antonio", 25, "hasenkamp"));
+        personas.add(new Persona("bastian", 25, "CABA"));
+
+        List<Persona> personasOrdenadas = personas.stream().sorted(new ComparadorPersona()).toList();
+        System.out.println("Personas ordenadas por edad y por nombre");
+        personasOrdenadas.forEach(System.out::println);
     }
 }
