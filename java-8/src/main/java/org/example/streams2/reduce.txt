@@ -1,0 +1,23 @@
+En Java, el método reduce es un método de la interfaz Stream.
+Este método se utiliza para combinar todos los elementos de un stream en un solo resultado mediante la aplicación repetida de una operación de combinación a los elementos del stream.
+Hay tres versiones diferentes del método reduce en la interfaz Stream:
+
+Optional<T> reduce(BinaryOperator<T> accumulator):
+Esta versión del método reduce toma un solo argumento, que es un acumulador binario.
+Este acumulador es una función que toma dos argumentos:
+un resultado parcial de la operación de reducción y el siguiente elemento del stream.
+El método reduce aplica repetidamente esta función a los elementos del stream para producir un resultado final.
+Si el stream está vacío, el método devuelve un Optional vacío.
+
+T reduce(T identity, BinaryOperator<T> accumulator):
+Esta versión del método reduce toma dos argumentos: un valor de identidad y un acumulador binario.
+El valor de identidad es el valor inicial de la operación de reducción y el resultado predeterminado si el stream está vacío.
+El acumulador binario es una función que toma dos argumentos: un resultado parcial de la operación de reducción y el siguiente elemento del stream.
+El método reduce aplica repetidamente esta función a los elementos del stream para producir un resultado final.
+
+<U> U reduce(U identity, BiFunction<U,? super T,U> accumulator, BinaryOperator<U> combiner):
+Esta versión del método reduce toma tres argumentos: un valor de identidad, un acumulador y un combinador.
+El valor de identidad es el valor inicial de la operación de reducción y el resultado predeterminado si el stream está vacío.
+El acumulador es una función que toma dos argumentos: un resultado parcial de la operación de reducción y el siguiente elemento del stream.
+El combinador es una función que se utiliza para combinar los resultados parciales de la operación de reducción cuando la reducción se paraleliza
+o cuando hay una discrepancia entre los tipos de los argumentos del acumulador y los tipos de la implementación del acumulador.

@@ -83,5 +83,22 @@ public class Streams2 {
         List<Persona> personasOrdenadas = personas.stream().sorted(new ComparadorPersona()).toList();
         System.out.println("Personas ordenadas por edad y por nombre");
         personasOrdenadas.forEach(System.out::println);
+
+        /*Haz un promedio de las edades de las personas*/
+        /*int suma =personas.stream()
+                .map(p -> p.getEdad())
+                .reduce(0,Integer::sum);
+        int promedio = suma / personas.size();
+        System.out.printf("suma %d, promedio %d",suma, promedio);*/
+
+        double promedio = personas.stream()
+                .mapToInt(Persona::getEdad)
+                .average().orElse(0.0);
+        System.out.printf("El promedio es :%.2f %n", promedio);
+
+        int suma = personas.stream()
+                .reduce(0, (acc, persona) -> persona.getEdad() + acc, Integer::sum);
+        double promedio2 = suma / personas.size();
+        System.out.printf("El promedio2 es :%.2f   %d %n", promedio2, suma);
     }
 }
