@@ -1,9 +1,6 @@
 package org.example.collections;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +9,11 @@ public class Main {
         List<String> arrayList = new ArrayList<>();
         Collection<String> arrayList2 = new ArrayList<>();
 
+        arrayList.add("zero");
+        arrayList.add("one");
+        arrayList.add("two");
+
+
         //These methods come from List interface
         arrayList.get(0);
         //arrayList.remove(1);
@@ -19,11 +21,6 @@ public class Main {
         //We can see that these methods doesn't work with a Collection type.
         //arrayList2.get();
         //arrayList2.remove(0);
-
-
-        arrayList.add("zero");
-        arrayList.add("one");
-        arrayList.add("two");
 
         for (String s : arrayList) {
             System.out.println(s);
@@ -71,7 +68,10 @@ public class Main {
             System.out.println(s);
         }
 
-
+        List<String> listUnmodifiable = List.of("Mateo", "Ivan");
+        //listUnmodifiable.add("hola"); //this will throw an exception
+        //listUnmodifiable.set(0, "hola"); //this will throw an exception
+        System.out.println(listUnmodifiable.size());
 
 
     }
