@@ -1,5 +1,7 @@
 package org.example.generics;
 
+import java.util.List;
+
 public class Box<T, V extends Number> {
     private T object;
 
