@@ -118,9 +118,33 @@ public class LinkedList<T> implements List<T> {
         return true;
     }
 
+    //it doesn't work correctly
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+
+        isIndexValid(index);
+
+        int numNew = c.toArray().length;
+
+        if (numNew == 0) return false;
+
+        Node<T> current = head;
+
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+
+            Node<T> node = current.next;
+
+            for (T t : c) {
+                    current.next = new Node<>(t, null);
+                    current = current.next;
+            }
+
+        current.next = node;
+
+        size += numNew;
+        return true;
     }
 
     @Override
@@ -140,21 +164,42 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        isIndexValid(index);
+        if (head == null) return null;
+        return getCurrentNodeByIndex(index).data;
     }
 
     @Override
     public T set(int index, T element) {
-        return null;
+        isIndexValid(index);
+        getCurrentNodeByIndex(index).data = element;
+        return element;
     }
 
     @Override
     public void add(int index, T element) {
-
+        isIndexValid(index);
+        if(index == 0){
+            head = new Node<>(element, head);
+        }else {
+            Node<T> prev = getCurrentNodeByIndex(index - 1);
+            prev.next = new Node<>(element, prev.next);
+        }
+        size++;
     }
 
     @Override
     public T remove(int index) {
+        isIndexValid(index);
+        if(index == 0){
+            head = head.next;
+        }else {
+            Node<T> prev = getCurrentNodeByIndex(index - 1);
+            prev.next = prev.next.next;
+        }
+        size--;
+
+
         return null;
     }
 
@@ -182,4 +227,17 @@ public class LinkedList<T> implements List<T> {
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
     }
+
+    private void isIndexValid(int index){
+        if ((index >= size || index < 0)) throw new IndexOutOfBoundsException("index out of bounds");
+    }
+
+    private Node<T> getCurrentNodeByIndex(int index){
+        Node<T> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current;
+    }
+
 }
