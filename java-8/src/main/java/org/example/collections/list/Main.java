@@ -1,4 +1,4 @@
-package org.example.collections;
+package org.example.collections.list;
 
 import java.util.*;
 
@@ -72,7 +72,6 @@ public class Main {
         //listUnmodifiable.add("hola"); //this will throw an exception
         //listUnmodifiable.set(0, "hola"); //this will throw an exception
         System.out.println(listUnmodifiable.size());
-
 
     }
 
