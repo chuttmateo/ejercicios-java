@@ -1,5 +1,8 @@
 package org.example.generics;
 
+import org.example.model.Dog;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -46,6 +49,11 @@ public class Main {
         l3o.add("sadf");
         l3o.add(100);
         printListSuperInteger(l3o);
+
+
+        List<Dog> dogs = List.of(new Dog(LocalDate.now()), new Dog(LocalDate.of(2001,10,10)), new Dog(LocalDate.of(2006,10,10)));
+        int dogsNumber = Methods.countElementsBySpecificProperty(dogs, (dog -> dog.getAge().isBefore(LocalDate.now().minusYears(18))));
+        System.out.println(dogsNumber);
     }
 
     public static <T> T foo(T t){
