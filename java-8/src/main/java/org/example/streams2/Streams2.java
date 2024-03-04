@@ -100,5 +100,13 @@ public class Streams2 {
                 .reduce(0, (acc, persona) -> persona.getEdad() + acc, Integer::sum);
         double promedio2 = suma / personas.size();
         System.out.printf("El promedio2 es :%.2f   %d %n", promedio2, suma);
+
+
+        /*Get randoms objects from a list*/
+        System.out.println("-------Get randoms objects from a list---------");
+        Collections.shuffle(personas, new Random());
+        List<Persona> personasRandom = personas.subList(0, 2);
+        personasRandom.forEach(System.out::println);
+
     }
 }

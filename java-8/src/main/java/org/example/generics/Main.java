@@ -64,8 +64,6 @@ public class Main {
     }
     public static void boxTest(Box<Number, Number> n) { /* ... */ }
     public static void boxTest2(Box<? extends Number, ? extends Number> n) { /* ... */ }
-
-
     public static void printList(List<?> list){
         for (Object element: list) {
             System.out.println(element);

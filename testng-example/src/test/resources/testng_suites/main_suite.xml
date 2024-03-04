@@ -1,0 +1,31 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="main" verbose="1" parallel="methods" thread-count="10" >
+
+    <listeners>
+        <listener class-name="org.example.testng.listeners.PrintListener"/>
+    </listeners>
+
+    <test name="unit test">
+        <classes>
+            <class name="org.example.testng.MainTest">
+                <methods>
+                    <include name="verifySumWithPositiveNumbersTest"/>
+                    <include name="verifySumWithNegativeNumbersTest"/>
+                    <include name="verifySumTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="functional tests">
+        <classes>
+            <class name="org.example.testng.MainTest">
+                <methods>
+                    <include name="verifySumWithPositiveNumbersTest"/>
+                    <include name="verifySumWithNegativeNumbersTest"/>
+                    <include name="verifySumTest"/>
+                    <include name="verifyPersonInstantiationTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
